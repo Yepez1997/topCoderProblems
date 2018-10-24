@@ -9,9 +9,10 @@
 #include <deque>
 #include <string>
 
+
 #define watch(x) cout << (#x) << " is " << (x) << '\n' 
 #define PB push_back
-//#define PF pop_front
+
 
 struct TIME {
     int seconds;
@@ -20,14 +21,23 @@ struct TIME {
 }; 
 
 using namespace std;
-	
+
+
+/* print_deque: helper function prints elems in deque 
+*/
 void print_deque(std::deque<std::string> &ds) {
-	for (auto const& s : ds) {
+	
+        for (auto const& s : ds) {
 		cout << s << '\n'; 
 	}
 }
 
+
+/* result: print out the answer based on the constraints of the problem 
+* 
+*/
 void result(TIME &delta) {
+    
     if (delta.hours > 0) {
         cout << delta.hours << " hours ago" << '\n'; 
     }
@@ -42,7 +52,12 @@ void result(TIME &delta) {
 
 }
 
+
+/* delta_time: calculates the time difference between current_time and 
+* post_time 
+*/
 TIME delta_time(TIME &c, TIME &p){
+    
     TIME delta;
     if(p.seconds > c.seconds) {
         --c.minutes;
@@ -61,7 +76,12 @@ TIME delta_time(TIME &c, TIME &p){
     return delta;  
 }
 
+
+/* deque_to_structs : get the deque values and insert to a 
+* cleaner defintion, TIME struct 
+*/ 
 TIME deque_to_structs(std::deque<std::string> &any) {
+
     TIME tm;
     int iter_count = 0;
     std::string::size_type sz; 
@@ -86,10 +106,10 @@ TIME deque_to_structs(std::deque<std::string> &any) {
     return tm;
 }
 
-void test_pop_front(std::deque<std::string> &any_ds) {
-    cout << "Pop front: " << any_ds.front() << '\n'; 
-}
 
+/* tokenize_to_deque: breaks down string into proper sections 
+*   i.e hours, minutes, seconds are int the deque 
+*/
 std::deque<std::string> tokenize_to_deque(std::string &any_time, std::deque<std::string> &ds){ 
   
 	std::stringstream ss(any_time); 
@@ -131,17 +151,9 @@ int main() {
         TIME delta = delta_time(current, post); 
         // eventually insert this into answer func 
         result(delta); 
-	return 0; 
+	return 0;
+
 }
-
-
-
-
-
-
-
-
-
 
 
 
