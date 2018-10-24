@@ -24,7 +24,7 @@ void print_deque(std::deque<std::string> &ds) {
 std::deque<std::string> tokenize_to_deque(std::string &any_time, std::deque<std::string> &ds){ 
   
 	std::stringstream ss(any_time); 
-	std::string holder= " ";	
+	std::string holder= "";	
 	// do parsing and add to appro
 	while (ss) {
  		watch(holder);
@@ -32,14 +32,14 @@ std::deque<std::string> tokenize_to_deque(std::string &any_time, std::deque<std:
 			ss.get(); 
 			ds.PB(holder); 
 			// reset holder
-			holder = " "; 
+			holder = ""; 
 		}
 		else { 
 			holder += ss.get(); // keep getting until encounter ';'	
 		}
-
 	}
-
+	std::string seconds = any_time.substr(any_time.size()-2,  any_time.size());	
+	ds.PB(seconds); // add seconds digits 
 	return ds; 
 
 } 
@@ -55,10 +55,12 @@ int main() {
 	std::string post_time = "12:11:13";
 
 	current_ds = tokenize_to_deque(current_time, current_ds); 
-	//post_ds = tokenize_to_deque(post_time);
+	post_ds = tokenize_to_deque(post_time, post_ds);
+	
 	// want to test one 
-
-	print_deque(current_ds); 
+	print_deque(post_ds); 
+	
+        //print_deque(current_ds); 
 	// should we test if values are correct? 
 	// shoud return "few seconds ago" 
 	 
