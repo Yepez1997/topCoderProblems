@@ -1,5 +1,5 @@
 /*
-* ForumPostMedium: using a 24 hour time 
+* ForumPostMedium: using a 24 hour time stamp
 */
 
 
@@ -21,13 +21,17 @@ void print_deque(std::deque<std::string> &ds) {
 	}
 }
 
-
+// first deque pop should be between 0-23 , thereafrer 0-59 
 std::string compare_deques(std::deque<std::string> &current, std::deque<std::string> &post) {
 
     std::string test_str = " "'
     // .... 
 
     return test_str
+}
+
+void test_pop_front(std::vector<std::string> &any_ds) {
+    cout << "Pop front: " << any_ds.getFront() << '\n'; 
 }
 
 std::deque<std::string> tokenize_to_deque(std::string &any_time, std::deque<std::string> &ds){ 
@@ -55,7 +59,6 @@ std::deque<std::string> tokenize_to_deque(std::string &any_time, std::deque<std:
 
 int main() { 
 	
-
 	std::deque<std::string> current_ds; 
 	std::deque<std::string> post_ds;
 	std::string current_time = "12:12:12";
@@ -66,3 +69,15 @@ int main() {
 		 
 	return 0; 
 }
+
+
+
+
+
+
+
+
+
+
+
+
