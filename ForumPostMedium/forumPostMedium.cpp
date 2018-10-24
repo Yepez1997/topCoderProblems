@@ -27,7 +27,40 @@ void print_deque(std::deque<std::string> &ds) {
 	}
 }
 
- 
+void result(TIME &delta) {
+    if (delta.hours > 0) {
+        cout << delta.hours << " hours ago" << '\n'; 
+    }
+    else { 
+        if (delta.minutes > 0) {
+            cout << delta.minutes << " minutes ago" << '\n'; 
+         }
+         else { 
+            cout << "few seconds ago" << '\n'; 
+         }
+    }
+
+}
+
+TIME delta_time(TIME &c, TIME &p){
+    TIME delta;
+    if(p.seconds > c.seconds) {
+        --c.minutes;
+        c.seconds += 60;
+    }
+
+    delta.seconds = c.seconds - p.seconds;
+    if(p.minutes > c.minutes) {
+        --c.hours;
+        c.minutes += 60;
+    }
+
+    delta.minutes = c.minutes-p.minutes;
+    delta.hours = c.hours-p.hours;
+
+    return delta;  
+}
+
 TIME deque_to_structs(std::deque<std::string> &any) {
     TIME tm;
     int iter_count = 0;
@@ -95,8 +128,9 @@ int main() {
         TIME current = deque_to_structs(current_ds);
         TIME post =  deque_to_structs(post_ds);
 
-        cout << current.hours << current.minutes << current.seconds << '\n'; 
-        cout << post.hours << post.minutes << post.seconds << '\n';
+        TIME delta = delta_time(current, post); 
+        // eventually insert this into answer func 
+        result(delta); 
 	return 0; 
 }
 
