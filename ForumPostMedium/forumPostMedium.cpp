@@ -21,11 +21,19 @@ void print_deque(std::deque<std::string> &ds) {
 	}
 }
 
+
+std::string compare_deques(std::deque<std::string> &current, std::deque<std::string> &post) {
+
+    std::string test_str = " "'
+    // .... 
+
+    return test_str
+}
+
 std::deque<std::string> tokenize_to_deque(std::string &any_time, std::deque<std::string> &ds){ 
   
 	std::stringstream ss(any_time); 
 	std::string holder= "";	
-	// do parsing and add to appro
 	while (ss) {
  		watch(holder);
 		if (ss.peek() == ':') {
@@ -46,9 +54,8 @@ std::deque<std::string> tokenize_to_deque(std::string &any_time, std::deque<std:
 
 
 int main() { 
-	// two strings to test 
-	// can use hashmap to distiguihs  ? 
-	// hours,minutes,seconds
+	
+
 	std::deque<std::string> current_ds; 
 	std::deque<std::string> post_ds;
 	std::string current_time = "12:12:12";
@@ -56,16 +63,6 @@ int main() {
 
 	current_ds = tokenize_to_deque(current_time, current_ds); 
 	post_ds = tokenize_to_deque(post_time, post_ds);
-	
-	// want to test one 
-	print_deque(post_ds); 
-	
-        //print_deque(current_ds); 
-	// should we test if values are correct? 
-	// shoud return "few seconds ago" 
-	 
-
+		 
 	return 0; 
-} 
-
-
+}
