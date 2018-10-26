@@ -2,16 +2,14 @@
 // @author Aureliano Yepez
 // @date October 22, 2018
 
-#include <iostream>
-#include <algorithm>
-#include <deque>
-#include <sstream>
-#include <vector> 
+#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+#include <catch2/catch.hpp>
+#include "getAccepted.h"
 
-using namespace std;
+std::vector<std::string> nots;
 
 // iterate over all list and return true/false based on contsraints 
-bool get_result(std::vector<std::string> &nots) {
+bool get_result() {
         // check if func makes it to here 
         cout << "get_result" << std::endl;
 	int count = 0; 
@@ -30,7 +28,7 @@ bool get_result(std::vector<std::string> &nots) {
 }
 
 // tokenize input and retrieve nots 
-bool get_string_tokens(std::string &sentence, std::vector<std::string> &nots) {
+bool get_string_tokens(std::string &sentence) {
 	// use a string stream
 	stringstream ss(sentence);
 	std::string holder = " "; 
@@ -59,18 +57,18 @@ bool get_string_tokens(std::string &sentence, std::vector<std::string> &nots) {
 		holder = " "; 
 		} 	
 	}	
-	return get_result(nots); 	 
+	return get_result(); 	 
 	
 }
 
 
-int main() {
-	
-	// test sentence
-	std::string test_string = "I want not not not to go to the park"; 
-	// holds nots -- if there are any 
-	std::vector<std::string> nots_vector; 
-	bool result = get_string_tokens(test_string, nots_vector);	 
-	cout << "result: " << result << std::endl; 
+
+TEST_CASE("Strings tested in get_string_tokens to result","[get_string_tokens]"){
+	std::string string_false = "I want to not go the the park";
+        std::string string_true = "I want to not not go to the park";
+	REQUIRE(get_string_tokens(string_false) == 0);
 }
+
+
+
 
