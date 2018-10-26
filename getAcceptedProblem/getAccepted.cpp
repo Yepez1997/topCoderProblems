@@ -6,12 +6,13 @@
 #include <catch2/catch.hpp>
 #include "getAccepted.h"
 
+#define watch(x) cout << (#x) << " is: " << (x) << '\n'
+
 std::vector<std::string> nots;
 
 // iterate over all list and return true/false based on contsraints 
 bool get_result() {
         // check if func makes it to here 
-        cout << "get_result" << std::endl;
 	int count = 0; 
         for (std::string s : nots) {
                 count += 1; 
@@ -20,6 +21,11 @@ bool get_result() {
 	// false & false is true 	
 	if (count % 2 == 0) {
 		return true; 	
+	}
+	
+	else if (count % 2 != 0){
+		watch(count);
+		return false; 
 	}
 	else {
 		// if odd number of nots return false 
@@ -41,6 +47,7 @@ bool get_string_tokens(std::string &sentence) {
 				holder += ss.get();
 				if (ss.peek() == 't') {
 					holder += ss.get(); 
+					watch(holder); 
 					nots.push_back(holder);
 					// reset holder to detect new ones 
 					holder = " ";
@@ -63,12 +70,22 @@ bool get_string_tokens(std::string &sentence) {
 
 
 
-TEST_CASE("Strings tested in get_string_tokens to result","[get_string_tokens]"){
-	std::string string_false = "I want to not go the the park";
-        std::string string_true = "I want to not not go to the park";
-	REQUIRE(get_string_tokens(string_false) == 0);
+TEST_CASE("Strings tested in get_string_tokens to result - COMPLEX","[get_string_tokens]"){
+	//std::string string_complex_false = "I want to not not go to the not park";
+	std::string string_complex_true = "I want to not not go to the not not park"; 
+	
+	REQUIRE(get_string_tokens(string_complex_true) == 1);
+	//REQUIRE(get_string_tokens(string_complex_false) == 0); 
+
 }
 
 
+TEST_CASE("Strings tested in get_string_tokens to result - EASY","[get_string_tokens]"){
+	std::string string_false = "I want to not go the the park";
+	//std::string string_true = "I want to not not go to the park";
+	
+	//REQUIRE(get_string_tokens(string_true) == 1);
+	REQUIRE(get_string_tokens(string_false) == 0);
 
+}
 
